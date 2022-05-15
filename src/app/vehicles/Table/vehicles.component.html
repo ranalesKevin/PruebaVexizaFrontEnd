@@ -1,0 +1,56 @@
+<div class="div_tabla-vehicles">
+
+  <mat-card>
+    Filtro
+    <div class="div-search">
+      <input matInput (keyup)="applyFilter()" [(ngModel)]="filtro" placeholder="Filtrar Tipo Vehiculo">
+    </div>
+  </mat-card>
+
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
+    <ng-container matColumnDef="codigo">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by codigo"> Código </th>
+      <td mat-cell *matCellDef="let element"> {{element.codigo}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="nombre">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </th>
+      <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="velocidadMaxima">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Velocidad maxima"> Velocidad
+        máxima </th>
+      <td mat-cell *matCellDef="let element"> {{element.velocidadMaxima}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="tipoVehiculo">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by Tipo de vehículo"> Tipo de
+        vehículo </th>
+      <td mat-cell *matCellDef="let element"> {{element.tipoVehiculo}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="botonDelete">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
+      <td mat-cell *matCellDef="let element">
+        <div>
+          <button mat-icon-button (click)="abrirDialogo(element)" color="primary">
+            <mat-icon>open_in_new</mat-icon>
+          </button>
+          <button mat-icon-button (click)="deleteVehicle(element)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="columnas"></tr>
+
+    <tr mat-row [class.demo-row-is-clicked]="clickedRows.has(row)" *matRowDef="let row; columns: columnas;"></tr>
+  </table>
+
+  <div class="div-nuevo-vehicle">
+    <button mat-raised-button (click)="abrirDialogoNuevos()" color="primary">Nuevo Vehículo</button>
+  </div>
+
+</div>

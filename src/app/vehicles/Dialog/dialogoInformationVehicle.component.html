@@ -1,0 +1,45 @@
+<div>
+  <h1 mat-dialog-title>Información Vehicle</h1>
+  <mat-divider></mat-divider>
+
+  <form class="example-form">
+    <mat-form-field class="example-full-width" appearance="fill" *ngIf='data.codigo'>
+      <mat-label>Código:</mat-label>
+      <input matInput value={{data.codigo}} [readonly]="true">
+    </mat-form-field>
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Nombre Vehiculo:</mat-label>
+      <input matInput [(ngModel)]="data.nombre" [ngModelOptions]="{standalone: true}" value={{data.nombre}}>
+    </mat-form-field>
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Consumo:</mat-label>
+      <input matInput [(ngModel)]="data.consumo" [ngModelOptions]="{standalone: true}" value={{data.consumo}} type="number">
+    </mat-form-field>
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Velocidad Máxima:</mat-label>
+      <input matInput [(ngModel)]="data.velocidadMaxima" [ngModelOptions]="{standalone: true}" type="number"
+       value={{data.velocidadMaxima}}>
+    </mat-form-field>
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Fecha Adquisición:</mat-label>
+      <input matInput [(ngModel)]="data.fechaAdquisicion" [ngModelOptions]="{standalone: true}"
+        value={{data.fechaAdquisicion}} placeholder="YYYY-MM-DD">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Tipo Vehículo:</mat-label>
+      <select matNativeControl [(ngModel)]="data.tipoVehiculo" [ngModelOptions]="{standalone: true}">
+        <option value="Coche">Coche</option>
+        <option value="Moto">Moto</option>
+      </select>
+    </mat-form-field>
+
+  </form>
+
+  <div mat-dialog-actions>
+    <button mat-raised-button *ngIf='data.codigo' (click)="updateVehicle(data)" color="primary">Actualizar</button>
+    <button mat-raised-button *ngIf='data.codigo == null' (click)="nuevoVehicle(data)" color="primary">Nuevo</button>
+    <button mat-raised-button (click)="cerrar()">Cerrar</button>
+  </div>
+
+</div>
